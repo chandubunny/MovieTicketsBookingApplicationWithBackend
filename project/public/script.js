@@ -13,12 +13,13 @@ function updateCost(){
 }
 
 movieSelect.addEventListener('change', (e)=>{
-    var screenNo = e.target.selectIndex + 1
+    var screenNo = e.target.selectedIndex + 1
     var selectedScreen = "screen" + screenNo
-    if(selectedScreen ===1){
-        var screen1 = getElementById('screen1')
-        var screen2 = getElementById('screen2')
-        var screen3 = getElementById('screen3')
+    //  alert(screenNo)
+    if(screenNo ===1){
+        var screen1 = document.getElementById('screen1')
+        var screen2 = document.getElementById('screen2')
+        var screen3 = document.getElementById('screen3')
         
         screen1.style.display = "flex"
         screen1.style.visibility = "visible"
@@ -28,10 +29,10 @@ movieSelect.addEventListener('change', (e)=>{
 
         screen3.style.display = "none"
         screen3.style.visibility = "hidden"
-    } else if (selectedScreen ===2){
-        var screen1 = getElementById('screen1')
-        var screen2 = getElementById('screen2')
-        var screen3 = getElementById('screen3')
+    } else if (screenNo ===2){
+        var screen1 = document.getElementById('screen1')
+        var screen2 = document.getElementById('screen2')
+        var screen3 = document.getElementById('screen3')
 
         screen1.style.display = "none"
         screen1.style.visibility = "hidden"
@@ -41,10 +42,10 @@ movieSelect.addEventListener('change', (e)=>{
         
         screen3.style.display = "none"
         screen3.style.visibility = "hidden"
-    }else if (selectedScreen ===3){
-        var screen1 = getElementById('screen1')
-        var screen2 = getElementById('screen2')
-        var screen3 = getElementById('screen3')
+    }else if (screenNo ===3){
+        var screen1 = document.getElementById('screen1')
+        var screen2 = document.getElementById('screen2')
+        var screen3 = document.getElementById('screen3')
 
         screen1.style.display = "none"
         screen1.style.visibility = "hidden"

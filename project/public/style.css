@@ -5,6 +5,12 @@
     margin: 3px;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
+    transition: transform 0.5s;
+    /* margin-left:20px */
+}
+
+.seat:hover{
+    transform: scale(1.2);
 }
 
 .seat.selected{
@@ -15,10 +21,34 @@
     background-color: black;
 }
 
+.seat:nth-of-type(4n){
+    margin-right: 20px;
+}
+
 .screen{
     background-color: silver;
     height: 70px;
     width: 100%;
     margin: 15px 0;
     transform: perspective(400px) rotateX(-45deg);
+    transition: transform 0.5s;
+}
+
+.screen:hover{
+    transform: scale(1.2);
+}
+
+.row{
+    margin-left: 15px;
+}
+
+#finalCost{
+    color:darkgreen;
+    font-size: 25px;
+    font-weight: bolder;
+    transition: transform 0.5s;
+}
+
+#finalCost:hover{
+    transform: scale(1.2);
 }

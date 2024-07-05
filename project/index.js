@@ -7,23 +7,13 @@ import path from 'path'
 import { fileURLToPath } from 'url'
 import mongoose from 'mongoose'
 
-async function connectToDB(){
-    try{
-        mongoose.connect("mongodb://127.0.0.1:27017/cinema",)
-    console.log("Connected to MongoDB")
-    // fetchData()
-}
+
+  mongoose.connect("mongodb://127.0.0.1:27017/cinema",)
+            
 // {
 //     useNewUrlParser: true,
 //     useUnifiedTopology: true
 // }
-catch(err){ 
-    console.log(err)
-}}
-// connectToDB()
-//"mongodb://127.0.0.1:127017/MovieTicket"
-// mongodb+srv://MT:MT@cluster0.w6coowd.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
-// let moviesRes, screen1Res, screen2Res, screen3Res
 
 const screen1model = mongoose.model('screen1',{
     seatno:{type:Number},  
@@ -42,32 +32,38 @@ const moviesmodel = mongoose.model('movies',{
     rate:{type:Number},  
     screenNo:{type:Number}
 })
-async function fetchData(){
-try{
- console.log('fetching screen1')   
-const screen1Res = await screen1model.find().exec()
-console.log("Screen1:", screen1Res)
-console.log("Screen1:", screen1Res[0].seatno)
-const screen2Res = await screen2model.find().exec()
-const screen3Res = await screen3model.find().exec()
-const moviesRes = await moviesmodel.find().exec()
-console.log("fetch")
-return {moviesRes: moviesRes, 
-    screen1Res: screen1Res, 
-    screen2Res: screen2Res, 
-    screen3Res: screen3Res}
 
-}
-catch(err){
+//  console.log('fetching screen1')   
+var screen1Res 
+screen1model.find()
+.then(function (output){
+    screen1Res = output
+}).catch(function (err){
     console.log(err)
-    return{
-        moviesRes, screen1Res, screen2Res, screen3Res
-    }
-}
-}
-// connectToDB().then(()=>{
-//     fetchData()
-// })
+})
+var screen2Res 
+ screen2model.find()
+ .then(function (output){
+    screen2Res = output
+ })
+ .catch(function (err){
+    console.log(err)
+ })
+var screen3Res 
+ screen3model.find()
+ .then(function (output){
+    screen3Res = output
+ }).catch(function (err){
+    console.log(err)
+ })
+var moviesRes 
+moviesmodel.find()
+.then(function (output){
+    moviesRes = output
+    }).catch(function (err){
+        console.log(err)
+        })
+
 
 const app = express()
 const __filename =fileURLToPath(import.meta.url)
@@ -83,14 +79,13 @@ app.use(cookieParser())
 app.use(express.static(path.join(__dirname,"public")))
 
 app.get('/cinema', async (req, res)=>{
-    await connectToDB()
-    const data = await fetchData()
-    const {moviesRes, screen1Res, screen2Res, screen3Res} = data
+    
     res.render('cinema',{
         movies:moviesRes,
         screen1:screen1Res,
         screen2:screen2Res,
         screen3:screen3Res,
+        
     })
 })
 app.listen(3000, ()=>{
